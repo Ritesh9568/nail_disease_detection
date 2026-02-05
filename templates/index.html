@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Hospital Website</title>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+  <!-- Disable favicon error -->
+  <link rel="icon" href="data:,">
+
+  <style>
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap");
+
+:root{
+  --green:#16a085;
+  --black:#444;
+  --light:#777;
+  --box-shadow:.5rem .5rem 0 rgba(22,160,133,.2);
+  --text-shadow:.4rem .4rem 0 rgba(0,0,0,.2);
+  --border:.2rem solid var(--green);
+}
+
+*{
+  font-family:'Poppins',sans-serif;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  outline:none;
+  border:none;
+  transition:.2s linear;
+  text-decoration:none;
+}
+
+html{
+  font-size:62.5%;
+  overflow-x:hidden;
+  scroll-padding-top:7rem;
+  scroll-behavior:smooth;
+}
+
+section{padding:2rem 9%;}
+section:nth-child(even){background:#f5f5f5;}
+
+.heading{
+  text-align:center;
+  padding-bottom:2rem;
+  font-size:4.5rem;
+  text-transform:uppercase;
+  color:var(--black);
+  text-shadow:var(--text-shadow);
+}
+
+.heading span{color:var(--green);}
+
+/* ===== BUTTON ===== */
+.btn{
+  display:inline-block;
+  margin-top:1rem;
+  padding:.8rem 1.4rem;
+  border:var(--border);
+  border-radius:.5rem;
+  box-shadow:var(--box-shadow);
+  font-size:1.6rem;
+  color:var(--green);
+  background:#fff;
+  cursor:pointer;
+}
+
+.btn span{
+  margin-left:.7rem;
+  padding:.5rem .8rem;
+  background:var(--green);
+  color:#fff;
+  border-radius:.5rem;
+}
+
+.btn:hover{background:var(--green);color:#fff;}
+.btn:hover span{background:#fff;color:var(--green);}
+
+/* ===== HEADER ===== */
+.header{
+  position:fixed;
+  top:0; left:0; right:0;
+  padding:2rem 9%;
+  background:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  box-shadow:0 .5rem 1.5rem rgba(0,0,0,.1);
+  z-index:1000;
+}
+
+.logo{font-size:2.5rem;color:var(--black);}
+.logo i{color:var(--green);}
+
+.navbar a{
+  font-size:1.6rem;
+  color:var(--light);
+  margin-left:2rem;
+}
+
+.navbar a:hover{color:var(--green);}
+
+#menu-btn{
+  font-size:2.5rem;
+  padding:1rem;
+  background:#eee;
+  color:var(--green);
+  border-radius:.5rem;
+  cursor:pointer;
+  display:none;
+}
+
+/* ===== HOME ===== */
+.home{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:2rem;
+  padding-top:10rem;
+}
+
+.home .image,
+.home .content{flex:1 1 45rem;}
+
+.home img{width:100%;}
+
+.home h3{
+  font-size:4.2rem;
+  line-height:1.4;
+  color:var(--black);
+  text-shadow:var(--text-shadow);
+}
+
+.home p{
+  font-size:1.6rem;
+  color:var(--light);
+  line-height:1.8;
+}
+
+/* ===== DOCTORS SECTION FIX ===== */
+.doctors .box-container{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(30rem, 1fr));
+  gap:3rem;
+  margin-top:2rem;
+}
+
+.doctors .box{
+  text-align:center;
+  padding:3rem 2rem;
+  border-radius:1rem;
+  border:var(--border);
+  box-shadow:var(--box-shadow);
+  background:#fff;
+}
+
+.doctors .box img{
+  width:100%;
+  max-width:22rem;
+  height:22rem;
+  object-fit:cover;
+  border-radius:50%;
+  margin-bottom:1.5rem;
+}
+
+.doctors .box h3{
+  font-size:2.2rem;
+  color:var(--black);
+}
+
+.doctors .box span{
+  font-size:1.6rem;
+  color:var(--green);
+}
+
+/* ===== PREDICT ===== */
+#predict .card{
+  max-width:45rem;
+  margin:auto;
+  padding:3rem;
+  background:#fff;
+  border-radius:1rem;
+  border:var(--border);
+  box-shadow:var(--box-shadow);
+}
+
+.pred-img{
+  width:100%;
+  max-width:25rem;
+  margin-top:1.5rem;
+  border-radius:1rem;
+  border:var(--border);
+}
+
+/* ===== ABOUT SECTION ===== */
+.about-container{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:3rem;
+}
+
+.about-image,
+.about-content{
+  flex:1 1 45rem;
+}
+
+.about-image img{
+  width:100%;
+}
+
+.about-content h3{
+  font-size:3.5rem;
+  color:var(--black);
+  margin-bottom:1rem;
+}
+
+.about-content p{
+  font-size:1.6rem;
+  color:var(--light);
+  line-height:1.8;
+  margin-bottom:1rem;
+}
+
+/* ===== PREDICTION SECTION ===== */
+#predict{
+  padding:4rem 9%;
+}
+
+#predict .card{
+  max-width:50rem;
+  margin:auto;
+  padding:3rem;
+  background:#fff;
+  border-radius:1.2rem;
+  border:var(--border);
+  box-shadow:var(--box-shadow);
+  text-align:center;
+}
+
+#predict form{
+  display:flex;
+  flex-direction:column;
+  gap:1.5rem;
+}
+
+#predict input[type="file"]{
+  padding:1rem;
+  border:var(--border);
+  border-radius:.5rem;
+  font-size:1.5rem;
+  cursor:pointer;
+}
+
+#predict .btn{
+  align-self:center;
+}
+
+.result{
+  margin-top:2rem;
+  padding:2rem;
+  background:#f0f7ff;
+  border-radius:1rem;
+}
+
+.result h3{
+  font-size:2.2rem;
+  color:var(--green);
+}
+
+.result p{
+  font-size:1.6rem;
+  margin-top:.5rem;
+}
+
+.pred-img{
+  width:100%;
+  max-width:28rem;
+  margin-top:1.5rem;
+  border-radius:1rem;
+  border:var(--border);
+}
+
+/* =========================
+   Services Section
+========================= */
+
+.services {
+  padding: 5rem 9%;
+  background: #f5f9ff;
+}
+
+.services .heading {
+  text-align: center;
+  font-size: 3.5rem;
+  margin-bottom: 3rem;
+  color: #333;
+}
+
+.services .heading span {
+  color: #16a085;
+}
+
+.services .box-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(28rem, 1fr));
+  gap: 2rem;
+}
+
+.services .box {
+  background: #fff;
+  border-radius: 1rem;
+  padding: 3rem 2rem;
+  text-align: center;
+  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.services .box:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.15);
+}
+
+.services .box i {
+  font-size: 4.5rem;
+  color: #16a085;
+  margin-bottom: 1.5rem;
+}
+
+.services .box h3 {
+  font-size: 2.2rem;
+  color: #333;
+  margin-bottom: 1rem;
+  text-transform: capitalize;
+}
+
+.services .box p {
+  font-size: 1.5rem;
+  color: #777;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+/* Button */
+.services .box .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.8rem;
+  font-size: 1.4rem;
+  color: #fff;
+  background: #16a085;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.services .box .btn:hover {
+  background: #13856d;
+  transform: translateX(5px);
+}
+
+.services .box .btn span {
+  font-size: 1.2rem;
+}
+
+/* =========================
+   Responsive
+========================= */
+
+@media (max-width: 768px) {
+  .services {
+    padding: 4rem 5%;
+  }
+
+  .services .heading {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 450px) {
+  .services .heading {
+    font-size: 2.5rem;
+  }
+}
+
+
+/* ===== MEDIA ===== */
+@media(max-width:768px){
+  #menu-btn{display:block;}
+
+  .navbar{
+    position:absolute;
+    top:115%; right:2rem;
+    width:30rem;
+    background:#fff;
+    border:var(--border);
+    box-shadow:var(--box-shadow);
+    border-radius:.5rem;
+    transform:scale(0);
+  }
+
+  .navbar.active{transform:scale(1);}
+}
+  </style>
+</head>
+
+<body>
+
+<header class="header">
+  <a href="#" class="logo"><i class="fas fa-heartbeat"></i> medicare</a>
+  <nav class="navbar">
+    <a href="#home">Home</a>
+    <a href="#services">Services</a>
+    <a href="#doctors">Doctors</a>
+    <a href="#predict">Prediction</a>
+    <a href="#about">About</a>
+
+  </nav>
+  <div id="menu-btn" class="fas fa-bars"></div>
+</header>
+
+<section class="home" id="home">
+  <div class="image">
+    <img src="{{ url_for('static', filename='images/d1.svg') }}">
+  </div>
+  <div class="content">
+    <h3>Stay Safe, Stay Healthy</h3>
+    <p>We provide the best healthcare services.</p>
+    <a href="#" class="btn">Read More <span>→</span></a>
+  </div>
+</section>
+
+<!-- Services Section Starts -->
+  <section class="services" id="services">
+    <h1 class="heading">our <span>services</span></h1>
+
+    <div class="box-container">
+      <div class="box">
+        <i class="fas fa-notes-medical"></i>
+        <h3>free checkups</h3>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad, omnis.</p>
+        <a href="#" class="btn">learn more <span class="fas fa-chevron-right"></span></a>
+      </div>
+      <div class="box">
+        <i class="fas fa-ambulance"></i>
+        <h3>24/7 ambulance</h3>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad, omnis.</p>
+        <a href="#" class="btn">learn more <span class="fas fa-chevron-right"></span></a>
+      </div>
+      <div class="box">
+        <i class="fas fa-user-md"></i>
+        <h3>expert doctors</h3>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad, omnis.</p>
+        <a href="#" class="btn">learn more <span class="fas fa-chevron-right"></span></a>
+      </div>
+      <div class="box">
+        <i class="fas fa-pills"></i>
+        <h3>medicines</h3>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad, omnis.</p>
+        <a href="#" class="btn">learn more <span class="fas fa-chevron-right"></span></a>
+      </div>
+      <div class="box">
+        <i class="fas fa-procedures"></i>
+        <h3>bed facility</h3>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad, omnis.</p>
+        <a href="#" class="btn">learn more <span class="fas fa-chevron-right"></span></a>
+      </div>
+      <div class="box">
+        <i class="fas fa-heartbeat"></i>
+        <h3>total care</h3>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad, omnis.</p>
+        <a href="#" class="btn">learn more <span class="fas fa-chevron-right"></span></a>
+      </div>
+    </div>
+  </section>
+  <!-- Services Section Ends --> 
+
+<section class="doctors" id="doctors">
+  <h1 class="heading">Our <span>Doctors</span></h1>
+
+  <div class="box-container">
+    <div class="box">
+      <img src="{{ url_for('static', filename='images/do1.jpg') }}" alt="Doctor">
+      <h3>John Deo</h3>
+      <span>Specialist</span>
+    </div>
+  </div>
+</section>
+
+
+<section id="predict">
+  <h1 class="heading">Disease <span>Prediction</span></h1>
+
+  <div class="card">
+    <form method="POST" action="/" enctype="multipart/form-data" class="predict-form">
+      <h3>Upload Nail Image</h3>
+
+      <input type="file" name="image" accept="image/*" required>
+
+      <button type="submit" class="btn">
+        Predict <span>→</span>
+      </button>
+    </form>
+
+    {% if prediction %}
+    <div class="result">
+      <h2 class="disease-name">{{ prediction }}</h2>
+
+      <p class="confidence">
+        Confidence: <strong>{{ confidence }}%</strong>
+      </p>
+
+      <img src="{{ url_for('static', filename=image_path) }}" class="pred-img">
+
+  <h3>Disease Information</h3>
+
+  <p><b>Description:</b> {{ details.description }}</p>
+  <p><b>Symptoms:</b> {{ details.symptoms }}</p>
+  <p><b>Causes:</b> {{ details.causes }}</p>
+  <p><b>Care:</b> {{ details.precautions }}</p>
+
+
+    {% endif %}
+  </div>
+</section>
+
+
+
+
+<section class="about" id="about">
+  <h1 class="heading">About <span>Us</span></h1>
+
+  <div class="about-container">
+    <div class="about-image">
+      <img src="{{ url_for('static', filename='images/d1.svg') }}" alt="About">
+    </div>
+
+    <div class="about-content">
+      <h3>We Care About Your Health</h3>
+      <p>
+        Our hospital uses modern technology and AI-based disease prediction
+        systems to provide fast, accurate, and reliable healthcare services.
+      </p>
+      <p>
+        With experienced doctors and advanced medical tools, we ensure
+        high-quality treatment and patient safety.
+      </p>
+      <a href="#services" class="btn">Learn More <span>→</span></a>
+    </div>
+  </div>
+</section>
+
+
+<script>
+const menuBtn = document.querySelector('#menu-btn');
+const navbar = document.querySelector('.navbar');
+menuBtn.onclick = () => navbar.classList.toggle('active');
+</script>
+
+</body>
+</html>
